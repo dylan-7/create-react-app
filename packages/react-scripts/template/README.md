@@ -1,5 +1,9 @@
 # joys-react-scripts
 
+```
+  create-react-app --scripts-version=joys-react-scripts my-app
+```
+
 ## 目录结构
 
 config 配置
