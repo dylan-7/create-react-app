@@ -4,9 +4,9 @@
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dylan-7/joys-create-react-app"
+    "url": "git@github.com:dylan-7/joys-create-react-app.git"
   },
-  "homepageg": "https://github.com/dylan-7/joys-create-react-app",
+  "homepageg": "https://github.com/dylan-7/joys-create-react-app/tree/master",
   "bugs": {
     "url": "https://github.com/dylan-7/joys-create-react-app/issues"
   },
@@ -18,8 +18,7 @@
     "bin",
     "config",
     "scripts",
-    "template",
-    "utils"
+    "template"
   ],
   "bin": {
     "react-scripts": "./bin/react-scripts.js"
