@@ -1,10 +1,10 @@
 {
   "name": "joys-react-scripts",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
-    "url": "git@github.com:dylan-7/joys-create-react-app.git"
+    "url": "https://github.com/dylan-7/joys-create-react-app/tree/master"
   },
   "homepageg": "https://github.com/dylan-7/joys-create-react-app/tree/master",
   "bugs": {
