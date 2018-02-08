@@ -188,7 +188,6 @@ module.exports = {
                       },
                     },
                     require.resolve('postcss-loader'),
-                    require.resolve(paths.antdCssLoaderPath),
                     require.resolve('less-loader'),
                   ],
                 },

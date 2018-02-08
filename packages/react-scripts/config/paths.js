@@ -61,7 +61,6 @@ module.exports = {
   appTsConfig: resolveApp('tsconfig.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  // antdCssLoaderPath: resolveApp('config/antd-css-loader.js'),
 };
 
 // @remove-on-eject-begin

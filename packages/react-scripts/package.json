@@ -92,6 +92,7 @@
     "postcss-selector-not": "^3.0.1",
     "postcss-sorting": "^3.1.0",
     "pleeease-filters": "^4.0.0",
+    "postcss-cssnext": "^3.1.0",
     "precss": "^3.1.0",
     "prettier": "^1.10.2",
     "promise": "8.0.1",
