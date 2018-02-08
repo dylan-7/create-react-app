@@ -1,15 +1,5 @@
-// @remove-on-eject-begin
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-// @remove-on-eject-end
-
 'use strict';
 
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -17,7 +7,6 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const tsImportPluginFactory = require('ts-import-plugin');
@@ -100,22 +89,13 @@ module.exports = {
       '.web.tsx',
       '.tsx',
       '.web.js',
-      '.mjs',
       '.js',
       '.json',
       '.web.jsx',
       '.jsx',
     ],
     alias: {
-      // @remove-on-eject-begin
-      // Resolve Babel runtime relative to react-scripts.
-      // It usually still works on npm 3 without this but it would be
-      // unfortunate to rely on, as react-scripts could be symlinked,
-      // and thus babel-runtime might not be resolvable from the source.
-      'babel-runtime': path.dirname(
-        require.resolve('babel-runtime/package.json')
-      ),
-      // @remove-on-eject-end
+      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -170,86 +150,28 @@ module.exports = {
           {
             test: /\.(ts|tsx)$/,
             include: paths.appSrc,
-            use: [
-              {
-                loader: require.resolve('ts-loader'),
-                options: {
-                  transpileOnly: true,
-                  getCustomTransformers: () => ({
-                    before: [
-                      tsImportPluginFactory([
-                        {
-                          libraryName: 'antd',
-                          libraryDirectory: 'lib',
-                        },
-                        {
-                          libraryName: 'antd-mobile',
-                          libraryDirectory: 'lib',
-                        },
-                      ]),
-                    ],
-                  }),
-                },
-              },
-            ],
-          },
-          // Process JS with Babel.
-          // {
-          //   test: /\.(js|jsx|mjs)$/,
-          //   include: paths.appSrc,
-          //   loader: require.resolve('babel-loader'),
-          //   options: {
-          //     // @remove-on-eject-begin
-          //     babelrc: false,
-          //     presets: [require.resolve('babel-preset-react-app')],
-          //     // @remove-on-eject-end
-          //     // This is a feature of `babel-loader` for webpack (not Babel itself).
-          //     // It enables caching results in ./node_modules/.cache/babel-loader/
-          //     // directory for faster rebuilds.
-          //     cacheDirectory: true,
-          //   },
-          // },
-          // "postcss" loader applies autoprefixer to our CSS.
-          // "css" loader resolves paths in CSS and adds assets as dependencies.
-          // "style" loader turns CSS into JS modules that inject <style> tags.
-          // In production, we use a plugin to extract that CSS to a file, but
-          // in development "style" loader enables hot editing of CSS.
-          {
-            test: /\.css$/,
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                },
-              },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  // Necessary for external CSS imports to work
-                  // https://github.com/facebookincubator/create-react-app/issues/2677
-                  ident: 'postcss',
-                  plugins: () => [
-                    require('postcss-flexbugs-fixes'),
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
-                  ],
-                },
-              },
-            ],
+            loader: require.resolve('ts-loader'),
+            options: {
+              transpileOnly: true,
+              getCustomTransformers: () => ({
+                before: [
+                  tsImportPluginFactory([
+                    {
+                      libraryName: 'antd',
+                      libraryDirectory: 'lib',
+                    },
+                    {
+                      libraryName: 'antd-mobile',
+                      libraryDirectory: 'lib',
+                    }
+                  ])
+                ]
+              })
+            }
           },
           {
-            // local
-            test: /\.less$/,
-            exclude: /antd|node_modules/,
+            test: /\.(less|css)$/,
+            exclude: /node_modules/,
             use: [
               require.resolve('style-loader'),
               {
@@ -258,39 +180,15 @@ module.exports = {
                   // local
                   importLoaders: 1,
                   modules: true,
-                  localIdentName: '[name]__[local]__[hash:5]',
+                  localIdentName: '[name]__[local]--[hash:5]',
                 },
               },
-              // {
-              //   loader: paths.antdCssLoaderPath,
-              // },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  // Necessary for external CSS imports to work
-                  // https://github.com/facebookincubator/create-react-app/issues/2677
-                  ident: 'postcss',
-                  plugins: () => [
-                    require('postcss-flexbugs-fixes'),
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
-                  ],
-                },
-              },
-              {
-                loader: require.resolve('less-loader'),
-              },
+              require.resolve('postcss-loader'),
+              require.resolve(paths.antdCssLoaderPath),
+              require.resolve('less-loader'),
             ],
           },
           {
-            // antd
             test: /\.less$/,
             include: /antd/,
             use: [
@@ -298,40 +196,14 @@ module.exports = {
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  // antd
                   importLoaders: 1,
                 },
               },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  // Necessary for external CSS imports to work
-                  // https://github.com/facebookincubator/create-react-app/issues/2677
-                  ident: 'postcss',
-                  plugins: () => [
-                    require('postcss-flexbugs-fixes'),
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
-                  ],
-                },
-              },
-              {
-                loader: require.resolve('less-loader'),
-              },
+              require.resolve('postcss-loader'),
+              require.resolve('less-loader'),
             ],
           },
           {
-            // Exclude `js` files to keep "css" loader working as it injects
-            // it's runtime that would otherwise processed through "file" loader.
-            // Also exclude `html` and `json` extensions so they get processed
-            // by webpacks internal loaders.
             exclude: [/\.js$/, /\.html$/, /\.json$/],
             loader: require.resolve('file-loader'),
             options: {
@@ -371,19 +243,6 @@ module.exports = {
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebookincubator/create-react-app/issues/186
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-    // Moment.js is an extremely popular library that bundles large locale files
-    // by default due to how Webpack interprets its code. This is a practical
-    // solution that requires the user to opt into importing specific locales.
-    // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
-    // You can remove this if you don't use Moment.js:
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // Perform type checking and linting in a separate process to speed up compilation
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-      watch: paths.appSrc,
-      tsconfig: paths.appTsConfig,
-      tslint: paths.appTsLint,
-    }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
