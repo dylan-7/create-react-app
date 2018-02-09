@@ -50,6 +50,5 @@ const environment = {
     console.warn('this = dva()._store.dispatch');
   }) as any, // 用于 utils 文件夹中的工具方法,
 
-  request: (url: string, options?: RequestInit): Promise<any> => Promise.reject('先初始化 request ')
 };
 export default environment;

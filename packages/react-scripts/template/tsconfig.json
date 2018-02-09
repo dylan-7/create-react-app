@@ -18,14 +18,12 @@
     "noUnusedLocals": false,
     "skipLibCheck": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "node_modules/@types",
       "typings"
     ]
   },
-  "include": [
-    "typings"
-  ],
   "exclude": [
     "node_modules",
     "build",

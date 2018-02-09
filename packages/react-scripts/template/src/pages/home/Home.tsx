@@ -1,57 +1,67 @@
 import * as React from 'react';
-import { connect } from 'dva';
-import * as styles from './Home.less';
+import { connect, Dispatch } from 'dva';
 import { Layout } from 'antd';
-import Main from '../main/Main'
+import styled from 'styled-components';
 
-@(connect(({ login }: any) => ({ login })) as any)
+const LayoutUI = styled(Layout)`
+  .header {
+    text-align: center;
+    color: #fff;
+  }
+  .ant-layout-content {
+    min-width: 600px;
+    margin: 0 auto;
+  }
+`;
+
+@(connect(({ home }: any) => ({ home })) as any)
 export default class Home extends React.PureComponent<HomeProps, any> {
-  constructor(props: HomeProps) {
-    super(props);
-    this.state = {};
-  }
 
-  checkLogin(props: HomeProps) {
-    if (!props.login || !props.login.hasLogin) {
-      // props.dispatch(push({pathname: '/login'}));
-    }
-  }
+  state = {};
 
   componentDidMount() {
-    this.checkLogin(this.props);
-  }
-
-  componentWillReceiveProps(nextProps: HomeProps) {
-    this.checkLogin(nextProps);
+    this.props.dispatch({ type: 'home/query' });
   }
 
   render() {
     return (
-      <Layout className={styles.wrapper}>
-        <Layout.Header className={styles.header}>
-          header
+      <LayoutUI>
+        <Layout.Header className="header">
+          Welcome to joys-react-scripts
         </Layout.Header>
         <Layout>
-          <Layout.Sider>
-          sider
-          </Layout.Sider>
-        </Layout>
-        <Layout className={styles.container}>
           <Layout.Content>
-            content
+            <div>
+              <h1>CSS 书写顺序</h1>
+              <p>
+                位置(position, top, right, bottom, left, z-index)<br/>
+                尺寸(display，width, height, padding, margin, overflow)<br/>
+                文字(font, line-height, letter-spacing, color, text-align)<br/>
+                视觉(cursor, background, border, content, opacity, transform)<br/>
+                动画(animation, transition)<br/>
+                <a href="https://github.com/twitter/recess/blob/master/lib/lint/strict-property-order.js#L36">
+                  完整顺序 (twitter)
+                </a>
+              </p>
+            </div>
+            <div>
+              <h1>日志格式</h1>
+              <p>
+                [F] Fixed #2245: 修复一项 BUG<br/>
+                [A] Feature #1190: new feature added. 添加了一项新功能<br/>
+                [A] Added #2108: same as feature. 添加了一项新功能<br/>
+                [R] Removed #985: 移除<br/>
+                [I] Improved #186: 改进/提升<br/>
+              </p>
+            </div>
           </Layout.Content>
         </Layout>
-        <Layout>
-          <Layout.Footer>
-            footer
-          </Layout.Footer>
-        </Layout>
-      </Layout>
+      </LayoutUI>
     );
   }
 }
 
 interface HomeProps {
-  login?: any;
-  dispatch?: any;
+  home?: any;
+  dispatch?: Dispatch;
 }
