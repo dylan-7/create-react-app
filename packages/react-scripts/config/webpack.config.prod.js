@@ -12,7 +12,7 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const tsImportPluginFactory = require('ts-import-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const appVersoin = paths.appVersion
+const appVersion = paths.appVersion
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -34,8 +34,8 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 }
 
 // Note: defined here because it will be used more than once.
-const cssFilename = `static/css/[name].${appVersoin}.[contenthash:5].css`,
-      commonFilename = `static/js/common.${paths.appVersion}.[chunkhash:5].js`;
+const cssFilename = `static/css/[name].${appVersion}.[contenthash:5].css`,
+      commonFilename = `static/js/common.${appVersion}.[chunkhash:5].js`;
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -60,7 +60,7 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: `static/js/[name].${appVersoin}.[chunkhash:5].js`,
+    filename: `static/js/[name].${appVersion}.[chunkhash:5].js`,
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,

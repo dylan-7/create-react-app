@@ -61,6 +61,7 @@ module.exports = {
   appTsConfig: resolveApp('tsconfig.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
+  appVersion: process.env.npm_package_version,
 };
 
 // @remove-on-eject-begin
@@ -87,6 +88,7 @@ module.exports = {
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
+  appVersion: process.npm_package_version,
 };
 
 const ownPackageJson = require('../package.json');
@@ -120,6 +122,7 @@ if (
     // These properties only exist before ejecting:
     ownPath: resolveOwn('.'),
     ownNodeModules: resolveOwn('node_modules'),
+    appVersion: process.env.npm_package_version
   };
 }
 // @remove-on-eject-end
