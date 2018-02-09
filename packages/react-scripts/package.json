@@ -1,6 +1,6 @@
 {
   "name": "joys-react-scripts",
-  "version": "1.1.5",
+  "version": "1.1.7",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -24,7 +24,8 @@
     "react-scripts": "./bin/react-scripts.js"
   },
   "scripts": {
-    "start": "node scripts/build.js && easy-copy-file --from build --to public",
+    "start": "node scripts/build.js",
+    "postbuild": "easy-copy-file --from build --to public",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "precommit": "lint-staged"
