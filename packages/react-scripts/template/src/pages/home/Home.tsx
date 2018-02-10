@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'dva';
+import { connect, Dispatch, SubscriptionAPI } from 'dva';
 import { Layout } from 'antd';
 import styled from 'styled-components';
+import { HomeStore } from './Home.model';
 
 const LayoutUI = styled(Layout)`
   .header {
@@ -14,13 +15,14 @@ const LayoutUI = styled(Layout)`
   }
 `;
 
-@(connect(({ home }: any) => ({ home })) as any)
-export default class Home extends React.PureComponent<HomeProps, any> {
+@(connect(({ home }: any) => ({ home })) as any) // tslint:disable-line
+export default class Home extends React.PureComponent<HomeProps, HomeState> {
 
-  state = {};
+  state: HomeState = {} ;
 
   componentDidMount() {
-    this.props.dispatch({ type: 'home/query' });
+    const { dispatch } = this.props as SubscriptionAPI;
+    dispatch({ type: 'home/query' });
   }
 
   render() {
@@ -62,6 +64,8 @@ export default class Home extends React.PureComponent<HomeProps, any> {
 }
 
 interface HomeProps {
-  home?: any;
+  home?: HomeStore;
   dispatch?: Dispatch;
+}
+interface HomeState {
 }

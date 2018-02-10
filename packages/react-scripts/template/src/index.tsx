@@ -1,5 +1,5 @@
 import * as React from 'react';
-import dva from 'dva';
+import dva, { SubscriptionAPI } from 'dva';
 import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -11,7 +11,7 @@ const app = dva({
   history: createBrowserHistory()
 });
 
-app.router(({ history }: any) => {
+app.router(({ history }: SubscriptionAPI) => {
   return (
     <ConnectedRouter history={history}>
       <Switch>

@@ -1,5 +1,4 @@
-import { Model } from 'dva';
-import { EffectsCommandMap, Action } from 'dva';
+import { Model, EffectsCommandMap, Action } from 'dva';
 import { queryAjax } from './Home.service';
 
 const HomeModel: Model = {
@@ -11,12 +10,12 @@ const HomeModel: Model = {
     *query({ payload }: Action, { put, call }: EffectsCommandMap) {
       const result = yield call(queryAjax, payload);
       if (result) {
-        console.log(result);
+        yield put({ type: 'save', payload: result });
       }
     }
   },
   reducers: {
-    save(state: HomeState, action: Action) {
+    save(state: HomeStore, action: Action) {
       return {...state, ...action.payload };
     }
   }
@@ -24,6 +23,6 @@ const HomeModel: Model = {
 
 export default HomeModel;
 
-export interface HomeState {
+export interface HomeStore {
 
 }

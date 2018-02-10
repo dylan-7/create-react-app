@@ -52,3 +52,33 @@ const environment = {
 
 };
 export default environment;
+
+declare global {
+  interface Window {
+    settings: {
+      domain: string;
+      ssl: boolean;
+      site: {
+        title: string;
+        theme: string;
+        lang: string;
+        copyright: string;
+        favicon: string;
+        sport: string;
+      },
+      base: {
+        maintaining: boolean;
+        site_status: boolean;
+        maintaining_start_time: string;
+        maintaining_end_time: string;
+      },
+      logo: {
+        normal: string;
+        small: string;
+        medium: string;
+        large: string;
+      }
+    }
+  }
+}
+
