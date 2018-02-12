@@ -49,8 +49,8 @@ function getServedPath(appPackageJson) {
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
-  appBuild: resolveApp('public'),
-  appView: resolveApp('view'),
+  appBuild: resolveApp('build'),
+  appPublic: resolveApp('view'),
   appHtml: resolveApp('view/index.html'),
   appIndexJs: resolveApp('src/index.tsx'),
   appPackageJson: resolveApp('package.json'),
@@ -71,8 +71,8 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('public'),
-  appView: resolveApp('view'),
+  appBuild: resolveApp('build'),
+  appPublic: resolveApp('view'),
   appHtml: resolveApp('view/index.html'),
   appIndexJs: resolveApp('src/index.tsx'),
   appPackageJson: resolveApp('package.json'),
@@ -105,8 +105,8 @@ if (
   module.exports = {
     dotenv: resolveOwn('template/.env'),
     appPath: resolveApp('.'),
-    appBuild: resolveOwn('../../public'),
-    appView: resolveOwn('template/view'),
+    appBuild: resolveOwn('../../build'),
+    appPublic: resolveOwn('template/view'),
     appHtml: resolveOwn('template/view/index.html'),
     appIndexJs: resolveOwn('template/src/index.tsx'),
     appPackageJson: resolveOwn('package.json'),
