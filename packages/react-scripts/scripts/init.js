@@ -42,6 +42,7 @@ module.exports = function(
     'build:serve': 'serve public',
     test: 'react-scripts test --env=jsdom',
     eject: 'react-scripts eject',
+    precommit: "lint-staged"
   };
 
   fs.writeFileSync(

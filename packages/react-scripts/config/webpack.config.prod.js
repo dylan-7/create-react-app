@@ -186,7 +186,14 @@ module.exports = {
                         minimize: true,
                       },
                     },
-                    require.resolve('postcss-loader'),
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        config: {
+                          path: path.resolve(__dirname, 'config/postcss.config.js')
+                        }
+                      }
+                    },
                     require.resolve('less-loader'),
                   ],
                 },
@@ -211,7 +218,14 @@ module.exports = {
                         minimize: true,
                       },
                     },
-                    require.resolve('postcss-loader'),
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        config: {
+                          path: path.resolve(__dirname, 'config/postcss.config.js')
+                        }
+                      }
+                    },
                     require.resolve('less-loader'),
                   ],
                 },

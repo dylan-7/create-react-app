@@ -183,7 +183,14 @@ module.exports = {
                   localIdentName: '[name]__[local]--[hash:5]',
                 },
               },
-              require.resolve('postcss-loader'),
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  config: {
+                    path: path.resolve(__dirname, 'config/postcss.config.js')
+                  }
+                }
+              },
               require.resolve('less-loader'),
             ],
           },
@@ -198,7 +205,14 @@ module.exports = {
                   importLoaders: 1,
                 },
               },
-              require.resolve('postcss-loader'),
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  config: {
+                    path: path.resolve(__dirname, 'config/postcss.config.js')
+                  }
+                }
+              },
               require.resolve('less-loader'),
             ],
           },

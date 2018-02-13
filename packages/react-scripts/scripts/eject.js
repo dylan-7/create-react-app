@@ -20,6 +20,7 @@ const execSync = require('child_process').execSync;
 const chalk = require('chalk');
 const paths = require('../config/paths');
 const createJestConfig = require('./utils/createJestConfig');
+const createLintStagedConfig = require('./utils/createLintStagedConfig');
 const inquirer = require('react-dev-utils/inquirer');
 const spawnSync = require('react-dev-utils/crossSpawn').sync;
 
@@ -111,6 +112,8 @@ inquirer
       true
     );
 
+    const lintStagedConfig = createLintStagedConfig();
+
     console.log();
     console.log(cyan(`Copying files into ${appPath}`));
 
@@ -200,6 +203,10 @@ inquirer
 
     console.log();
     console.log(cyan('Configuring package.json'));
+    // Add Lint-staged config
+    console.log(`  Adding ${cyan('lint-staged')} configuration`);
+    appPackage['lint-staged'] = lintStagedConfig;
+
     // Add Jest config
     console.log(`  Adding ${cyan('Jest')} configuration`);
     appPackage.jest = jestConfig;
