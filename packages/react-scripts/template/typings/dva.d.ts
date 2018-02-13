@@ -15,7 +15,7 @@ declare module 'dva' {
   export interface Model {
     namespace: string;
     state: object;
-    subscriptions: {
+    subscriptions?: {
       setup({ history, dispatch }: SubscriptionAPI): void;
     };
     effects?: object;
