@@ -205,16 +205,6 @@ inquirer
     console.log();
     console.log(cyan('Configuring package.json'));
 
-    appPackage.devDependencies = appPackage.devDependencies || {};
-    Object.keys(appPackage.dependencies).forEach(key => {
-      dependenciesConfig.forEach(configKey => {
-        if (!!configKey && configKey !== key) {
-          appPackage.devDependencies[key] = appPackage.dependencies[key];
-          delete appPackage.dependencies[key];
-        }
-      })
-    });
-
     // Add Lint-staged config
     console.log(`  Adding ${cyan('lint-staged')} configuration`);
     appPackage['lint-staged'] = lintStagedConfig;
