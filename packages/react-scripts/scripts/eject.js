@@ -21,6 +21,7 @@ const chalk = require('chalk');
 const paths = require('../config/paths');
 const createJestConfig = require('./utils/createJestConfig');
 const createLintStagedConfig = require('./utils/createLintStagedConfig');
+const dependenciesConfig = require('./utils/dependenciesConfig');
 const inquirer = require('react-dev-utils/inquirer');
 const spawnSync = require('react-dev-utils/crossSpawn').sync;
 
@@ -203,6 +204,17 @@ inquirer
 
     console.log();
     console.log(cyan('Configuring package.json'));
+
+    appPackage.devDependencies = appPackage.devDependencies || {};
+    Object.keys(appPackage.dependencies).forEach(key => {
+      dependenciesConfig.forEach(configKey => {
+        if (!!configKey && configKey !== key) {
+          appPackage.devDependencies[key] = appPackage.dependencies[key];
+          delete appPackage.dependencies[key];
+        }
+      })
+    });
+
     // Add Lint-staged config
     console.log(`  Adding ${cyan('lint-staged')} configuration`);
     appPackage['lint-staged'] = lintStagedConfig;
