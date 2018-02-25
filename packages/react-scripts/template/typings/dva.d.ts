@@ -1,12 +1,12 @@
 declare module 'dva' {
-  import { Dispatch, Connect } from 'react-redux'; // tslint:disable-line
+  import { Connect } from 'react-redux'; // tslint:disable-line
   import { History } from 'history'; // tslint:disable-line
   export interface Dva {
     model: (p: any) => void;
     router: (p: any) => any;
     start: (root: HTMLElement | null) => any;
     _store: {
-      dispatch: Dispatch<any>;
+      dispatch: Dispatch;
     };
   }
 
@@ -24,14 +24,15 @@ declare module 'dva' {
     payload?: object;
   }
   export interface Dispatch {
-    <A extends Action>(action: A): Promise<any> | void;
+    <A extends Action>(action: A): Promise<any>;
+    <A extends Action>(action: A): A;
   }
 
   export declare const connect: Connect;
 
   export interface SubscriptionAPI {
     history: History;
-    dispatch: Dispatch<any>;
+    dispatch: Dispatch;
   }
   export interface EffectsCommandMap {
     put: <A extends Action>(action: A) => any;
