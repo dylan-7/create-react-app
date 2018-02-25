@@ -1,5 +1,3 @@
-import { Dva } from "dva";
-
 declare module 'dva' {
   import { Dispatch, Connect } from 'react-redux'; // tslint:disable-line
   import { History } from 'history'; // tslint:disable-line
