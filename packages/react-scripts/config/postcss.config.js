@@ -44,13 +44,13 @@ sorting = require('postcss-sorting')({
   ],
   'properties-order': 'alphabetical',
   'unspecified-properties-position': 'bottom'
-}),
+})
 
 // A modular minifier, built on top of the PostCSS ecosystem. http://cssnano.co
 // https://github.com/ben-eb/cssnano
-cssnano = require('cssnano')({
-  preset: 'default',
-});
+// cssnano = require('cssnano')({
+//   preset: 'default',
+// });
 
 
 module.exports = () => {
@@ -78,8 +78,7 @@ module.exports = () => {
           autoprefixer,
           precss,
           cssnext,
-          sorting,
-          cssnano
+          sorting
         ]
     }
 }
