@@ -171,9 +171,9 @@ module.exports = {
             }
           },
           {
-            // local
-            test: /\.(css|less)$/,
-            exclude: /antd/,
+            test: /\.scss$/,
+            include: path.resolve(__dirname, paths.appSrc),
+            exclude: path.resolve(__dirname, `${paths.appSrc}/assets`),
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -196,7 +196,7 @@ module.exports = {
                         }
                       }
                     },
-                    require.resolve('less-loader'),
+                    require.resolve('sass-loader'),
                   ],
                 },
                 extractTextPluginOptions
@@ -205,9 +205,11 @@ module.exports = {
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
           {
-            // antd
-            test: /\.(css|less)$/,
-            include: /antd/,
+            test: /\.(css|scss)$/,
+            include: [
+              path.resolve(__dirname, `${paths.appSrc}/assets`),
+              /antd/
+            ],
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -228,7 +230,7 @@ module.exports = {
                         }
                       }
                     },
-                    require.resolve('less-loader'),
+                    require.resolve('sass-loader'),
                   ],
                 },
                 extractTextPluginOptions

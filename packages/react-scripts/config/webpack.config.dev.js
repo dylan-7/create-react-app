@@ -118,12 +118,13 @@ module.exports = {
 
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      {
-        test: /\.(ts|tsx)$/,
-        loader: require.resolve('tslint-loader'),
-        enforce: 'pre',
-        include: paths.appSrc,
-      },
+        // too slooooooow
+      // {
+      //   test: /\.(ts|tsx)$/,
+      //   loader: require.resolve('tslint-loader'),
+      //   enforce: 'pre',
+      //   include: paths.appSrc,
+      // },
       {
         test: /\.js$/,
         loader: require.resolve('source-map-loader'),
@@ -170,15 +171,15 @@ module.exports = {
             }
           },
           {
-            test: /\.(less|css)$/,
-            exclude: /node_modules/,
+            test: /\.scss$/,
+            include: path.resolve(__dirname, paths.appSrc),
+            exclude: path.resolve(__dirname, `${paths.appSrc}/assets`),
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  // local
-                  importLoaders: 1,
+                  importLoaders: 2,
                   modules: true,
                   localIdentName: '[name]__[local]--[hash:5]',
                 },
@@ -191,18 +192,21 @@ module.exports = {
                   }
                 }
               },
-              require.resolve('less-loader'),
+              require.resolve('sass-loader'),
             ],
           },
           {
-            test: /\.less$/,
-            include: /antd/,
+            test: /\.(scss|css)$/,
+            include: [
+              path.resolve(__dirname, `${paths.appSrc}/assets`),
+              /antd/,
+            ],
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  importLoaders: 1,
+                  importLoaders: 2,
                 },
               },
               {
@@ -213,7 +217,7 @@ module.exports = {
                   }
                 }
               },
-              require.resolve('less-loader'),
+              require.resolve('sass-loader'),
             ],
           },
           {
