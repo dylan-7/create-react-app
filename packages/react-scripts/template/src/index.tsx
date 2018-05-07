@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
 import Home from './pages/home/Home';
-import 'antd/dist/antd.less';
+import './assets/styles/app.scss';
 
 const app = dva({
   history: createBrowserHistory()
