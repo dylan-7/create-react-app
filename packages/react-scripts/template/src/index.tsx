@@ -26,8 +26,8 @@ app.start(document.getElementById('root'));
 registerServiceWorker();
 
 // hot module replace
-if (module['hot']) {
-  module['hot'].accept('./pages/home/Home', () => {
+if (module.hot) {
+  module.hot.accept('./pages/home/Home', () => {
     app.router(router);
     app.start(document.getElementById('root'));
   });
