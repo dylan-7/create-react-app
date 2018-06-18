@@ -1,6 +1,6 @@
 {
   "name": "joys-react-scripts",
-  "version": "1.1.49",
+  "version": "1.1.51",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -99,7 +99,7 @@
     "react-intl": "^2.4.0",
     "redux-mock-store": "^1.5.1",
     "sass-loader": "^7.0.3",
-    "serve": "^8.1.2",
+    "serve": "^9.0.0",
     "source-map-loader": "^0.2.3",
     "style-loader": "0.21.0",
     "styled-components": "^3.3.2",
