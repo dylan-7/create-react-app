@@ -1,6 +1,6 @@
 {
   "name": "joys-react-scripts",
-  "version": "1.2.32",
+  "version": "1.2.33",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -59,7 +59,7 @@
     "css-loader": "2.1.0",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
-    "dva": "2.4.1",
+    "dva": "2.4.0",
     "dva-loading": "2.0.6",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
