@@ -7,5 +7,5 @@ Please refer to its documentation:
 * [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
 
 ```
-  create-react-app --scripts-version=joys-react-scripts my-app
+  create-react-app my-app --scripts-version=joys-react-scripts
 ```
