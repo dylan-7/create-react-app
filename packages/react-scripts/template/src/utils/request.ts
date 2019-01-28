@@ -70,11 +70,13 @@ function requestWrap(env: Environment) {
           const disposition = response.headers.get('Content-Disposition') || 'file';
           if (disposition && disposition.match(/attachment/)) {
             response.blob().then(blob => {
-              let fileName = response.headers
+              // tslint:disable-next-line:no-any
+              let fileName = (response as any).headers
                 .get('Content-Disposition')
                 .split(';')[1]
                 .split('filename=')[1];
-              const fileNameUnicode = response.headers.get('Content-Disposition').split('filename*=')[1];
+              // tslint:disable-next-line:no-any
+              const fileNameUnicode = (response as any).headers.get('Content-Disposition').split('filename*=')[1];
               fileName = decodeURIComponent(fileNameUnicode.split('\'\'')[1]);
               const fileUrl = URL.createObjectURL(blob);
               const saveLink = document.createElement('a');
@@ -121,7 +123,8 @@ function requestWrap(env: Environment) {
 }
 
 /** 请求接口 */
-export default requestWrap(environment);
+// tslint:disable-next-line:no-any
+export default requestWrap(environment as any);
 
 /** 用于配置默认头 */
 interface Environment {

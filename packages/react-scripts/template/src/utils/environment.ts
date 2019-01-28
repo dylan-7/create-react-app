@@ -1,5 +1,4 @@
 import { initTheme } from './env.theme';
-import { initLocal, initCode } from './env.util';
 
 const isDev = /^(192\.168|127\.0\.0\.1|localhost)/.test(window.location.host);
 const isDevTheme = isDev;
@@ -32,7 +31,7 @@ const environment = {
   sport: site.sport, // iframe 外链
 
   theme: initTheme(site.theme, isDevTheme), // 主题值为：'1','2'...
-  locale: initLocal(site.lang), // 本地语言
+  locale: site.lang, // 本地语言
   maintaining: base.site_status === true || base.maintaining === true, // 维护中
   maintaining_start_time: base.maintaining_start_time, // 维护中
   maintaining_end_time: base.maintaining_end_time, // 维护中
@@ -43,8 +42,6 @@ const environment = {
   expiration: 'joys_exp', // sessionStorage Key
   loginInfo: 'joys_loginInfo', // sessionStorage Key
   app_link: 'joys_app_link', // sessionStorage Key
-
-  invitedCode: initCode(),
 
   dispatch: ((action: { type: string; payload?: any }) => {
     console.warn('this = dva()._store.dispatch');

@@ -1,6 +1,16 @@
 {
     "extends": ["tslint-react"],
+    "rulesDirectory": "./config/tslint-rules",
     "rules": {
+        "tsx-file": [true, 365, 5],
+        "file-name-ok": true,
+        "no-css-important": [true, "float:", "var\\(", "-webkit-"],
+        "no-sass-in-page": true,
+        "no-deep-conditional": true,
+        "non-null-operator": true,
+        "top-level-comment": true,
+        "no-unused-variable": true,
+        "one-variable-per-declaration": true,
         "align": [
             true,
             "parameters",
@@ -26,7 +36,7 @@
         "member-ordering": [true, {"order": "statics-first"}],
         "no-any": true,
         "no-arg": true,
-        "no-bitwise": true,
+        "no-bitwise": false,
         "no-console": [
             true,
             "log",
