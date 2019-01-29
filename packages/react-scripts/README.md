@@ -9,3 +9,37 @@ Please refer to its documentation:
 ```
   create-react-app my-app --scripts-version=joys-react-scripts
 ```
+
+Then `cd my-app`, `yarn eject`, `yarn start` can start APP normally.
+
+## FAQ 
+
+**Prompt type error at startup**
+
+```
+Type error: Argument of type '({ history }: SubscriptionAPI) => Element' is not assignable to parameter
+ of type 'Router'.
+  Types of parameters '__0' and 'api' are incompatible.
+    Type 'RouterAPI | undefined' is not assignable to type 'SubscriptionAPI'.
+      Type 'undefined' is not assignable to type 'SubscriptionAPI'.  TS2345
+
+    22 | };
+    23 |
+  > 24 | app.router(router);
+       |            ^
+    25 | app.start(document.getElementById('root'));
+    26 | registerServiceWorker();
+    27 |
+```
+
+After you create the app, you need to execute `yarn eject` and start the app
+
+
+## Changelog
+
+V1.2.41
+
+* Upgrade to the latest dependencies
+
+## Keywords
+react joys-create-react-app react-scripts
