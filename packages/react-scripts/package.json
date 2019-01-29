@@ -1,6 +1,6 @@
 {
   "name": "joys-react-scripts",
-  "version": "1.2.42",
+  "version": "1.2.43",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -22,6 +22,11 @@
     "template",
     "template-typescript",
     "utils"
+  ],
+  "keywords": [
+    "react",
+    "joys-create-react-app",
+    "react-scripts"
   ],
   "bin": {
     "react-scripts": "./bin/react-scripts.js"
