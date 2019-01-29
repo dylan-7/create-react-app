@@ -40,6 +40,3 @@ After you create the app, you need to execute `yarn eject` and start the app
 V1.2.41
 
 * Upgrade to the latest dependencies
-
-## Keywords
-react joys-create-react-app react-scripts
