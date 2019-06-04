@@ -34,6 +34,12 @@ Type error: Argument of type '({ history }: SubscriptionAPI) => Element' is not 
 
 After you create the app, you need to execute `yarn eject` and start the app
 
+**this.htmlWebpackPlugin.getHooks is not a function**
+
+```
+"html-webpack-plugin": "^4.0.0-beta.2"
+```
+
 
 ## Changelog
 

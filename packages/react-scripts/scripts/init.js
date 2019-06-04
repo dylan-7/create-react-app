@@ -16,7 +16,7 @@ process.on('unhandledRejection', err => {
 
 const fs = require('fs-extra');
 const path = require('path');
-const chalk = require('chalk');
+const chalk = require('react-dev-utils/chalk');
 const execSync = require('child_process').execSync;
 const spawn = require('react-dev-utils/crossSpawn');
 const { defaultBrowsers } = require('react-dev-utils/browsersHelper');
@@ -100,7 +100,7 @@ module.exports = function(
     'build:serve': 'serve public --single',
     test: 'react-scripts test --env=jsdom',
     eject: 'react-scripts eject',
-    precommit: "lint-staged"
+    precommit: 'lint-staged'
   };
 
   // Setup the eslint config

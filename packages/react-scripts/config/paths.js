@@ -70,7 +70,7 @@ const resolveModule = (resolveFn, filePath) => {
     return resolveFn(`${filePath}.${extension}`);
   }
 
-  return resolveFn(`${filePath}.js`);
+  return resolveFn(`${filePath}`);
 };
 
 // config after eject: we're in ./config/
@@ -80,12 +80,13 @@ module.exports = {
   appBuild: resolveApp('public'),
   appPublic: resolveApp('view'),
   appHtml: resolveApp('view/index.html'),
-  appIndexJs: resolveApp('src/index.tsx'),
+  appIndexJs: resolveModule(resolveApp, 'src/index.tsx'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
+  appJsConfig: resolveApp('jsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveApp('src/setupTests.ts'),
+  testsSetup: resolveModule(resolveApp, 'src/setupTests.ts'),
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
@@ -103,10 +104,11 @@ module.exports = {
   appBuild: resolveApp('public'),
   appPublic: resolveApp('view'),
   appHtml: resolveApp('view/index.html'),
-  appIndexJs: resolveApp('src/index.tsx'),
+  appIndexJs: resolveModule(resolveApp, 'src/index.tsx'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
+  appJsConfig: resolveApp('jsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.ts'),
   proxySetup: resolveApp('src/setupProxy.js'),
@@ -138,12 +140,12 @@ if (
     appBuild: resolveOwn('../../public'),
     appPublic: resolveOwn('template/view'),
     appHtml: resolveOwn('template/view/index.html'),
-    appIndexJs: resolveApp('template/src/index.tsx'),
+    appIndexJs: resolveModule(resolveOwn, 'template/src/index.tsx'),
     appPackageJson: resolveOwn('package.json'),
     appSrc: resolveOwn('template/src'),
     appTsConfig: resolveOwn('template/tsconfig.json'),
     yarnLockFile: resolveOwn('template/yarn.lock'),
-    testsSetup: resolveApp('template/src/setupTests.ts'),
+    testsSetup: resolveModule(resolveOwn, 'template/src/setupTests.ts'),
     proxySetup: resolveOwn('template/src/setupProxy.js'),
     appNodeModules: resolveOwn('node_modules'),
     publicUrl: getPublicUrl(resolveOwn('package.json')),

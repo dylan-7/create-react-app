@@ -7,13 +7,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NodePath from './NodePath';
+import App from './App';
 
-describe('NODE_PATH', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    return new Promise(resolve => {
-      ReactDOM.render(<NodePath onReady={resolve} />, div);
-    });
+test('loads modules absolutely with NODE_PATH', () => {
+  const div = document.createElement('div');
+  return new Promise(resolve => {
+    ReactDOM.render(<App onReady={resolve} />, div);
   });
 });

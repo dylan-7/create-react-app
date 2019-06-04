@@ -29,7 +29,7 @@ export default class Home extends React.PureComponent<HomeProps, HomeState> {
     return (
       <LayoutUI>
         <Layout.Header className="header">
-          Welcome to joys-react-scripts
+          Welcome to joys-react-scripts ❤
         </Layout.Header>
         <Layout>
           <Layout.Content>

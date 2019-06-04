@@ -23,7 +23,11 @@
     "typeRoots": [
       "node_modules/@types",
       "typings"
-    ]
+    ],
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "exclude": [
     "node_modules",
