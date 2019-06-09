@@ -1,3 +1,10 @@
+// tslint:disable-line
+declare module '*.png';
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.gif';
+declare module '*.mp3';
+
 declare module 'dva' {
   import { Connect } from 'react-redux'; // tslint:disable-line
   import { History } from 'history'; // tslint:disable-line
