@@ -60,6 +60,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 module.exports = function(webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
+  const shouldUseSourceMap = isEnvProduction ? false : isEnvDevelopment == 'development';
 
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -102,12 +103,29 @@ module.exports = function(webpackEnv) {
           // https://github.com/facebook/create-react-app/issues/2677
           ident: 'postcss',
           plugins: () => [
-            require('postcss-flexbugs-fixes'),
+            require('postcss-import')(),
+            require('postcss-selector-matches')(),
+            require('postcss-selector-not')(),
+            require('postcss-flexbugs-fixes')(),
             require('postcss-preset-env')({
               autoprefixer: {
+                grid: 'autoplace',
+                supports: true,
                 flexbox: 'no-2009',
               },
               stage: 3,
+            }),
+            require('precss')(),
+            require('postcss-sorting')({
+              'order': [
+                'custom-properties',
+                'dollar-variables',
+                'declarations',
+                'at-rules',
+                'rules'
+              ],
+              'properties-order': 'alphabetical',
+              'unspecified-properties-position': 'bottom'
             }),
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
@@ -141,7 +159,7 @@ module.exports = function(webpackEnv) {
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
-      isEnvDevelopment && require.resolve('babel-polyfill'),
+      isEnvProduction && require.resolve('babel-polyfill'),
       // Include an alternative client for WebpackDevServer. A client's job is to
       // connect to WebpackDevServer by a socket and get notified about changes.
       // When you save a file, the client will either apply hot updates (in case
@@ -174,8 +192,8 @@ module.exports = function(webpackEnv) {
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction
-        ? 'static/js/[name].[chunkhash:8].chunk.js'
-        : isEnvDevelopment && 'static/js/[name].chunk.js',
+        ? `static/js/[name].${paths.appVersion}.[chunkhash:8].min.js`
+        : isEnvDevelopment && 'static/js/[name].min.js',
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
       publicPath: publicPath,
@@ -257,17 +275,24 @@ module.exports = function(webpackEnv) {
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: isEnvProduction ? {
-        commons: { // 抽离自己的公共代码
-          chunks: 'initial', // initial 初始块、async 按需加载块、all 全部块
-          name: `common.${paths.appVersion}`,
-          minChunks: 2, // 最小引用次数
-          minSize: 0, // 大于该字节生成一个新包
-        },
-        vendor: { // 抽离第三方库
-          test: paths.appNodeModules, // node_modules下的第三方包
-          chunks: 'initial',
-          name: `vendor.${paths.appVersion}`,
-          priority: 10, // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+        chunks: 'all',
+        minChunks: 1,
+        minSize: 30000,
+        cacheGroups: {
+          common: { // 抽离自己的公共代码
+            test: paths.appSrc,
+            chunks: 'initial', // initial打包同步和异步，异步内部的引入不再考虑，直接打包在一起，async分割异步打包的代码，all同时分割同步和异步代码
+            name: `common`,
+            minChunks: 2, // 最小引用次数
+            reuseExistingChunk: true, // 如果该chunk中引用了已经被抽取的chunk，直接引用该chunk，不会重复打包代码
+          },  
+          vendor: { // 抽离第三方库
+            test: paths.appNodeModules, // node_modules下的第三方包
+            chunks: 'initial',
+            name: `vendor`,
+            minChunks: 1,
+            priority: 10, // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+          },
         },
       } : {
         chunks: 'all',
@@ -480,6 +505,9 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders({
                 importLoaders: 1,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
+                modules: isEnvProduction,
+                localIdentName: '[name]__[local]--[hash:5]',
+                minimize: isEnvProduction,
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -496,6 +524,8 @@ module.exports = function(webpackEnv) {
                 sourceMap: isEnvProduction && shouldUseSourceMap,
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
+                localIdentName: '[name]__[local]--[hash:5]',
+                minimize: isEnvProduction,
               }),
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
@@ -618,7 +648,7 @@ module.exports = function(webpackEnv) {
           // Options similar to the same options in webpackOptions.output
           // both options are optional
           filename: `static/css/[name].${paths.appVersion}.[contenthash:8].css`,
-          chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+          chunkFilename: `static/css/[name].${paths.appVersion}.[contenthash:8].min.css`,
         }),
       // Generate a manifest file which contains a mapping of all asset filenames
       // to their corresponding output file so that tools can pick it up without
