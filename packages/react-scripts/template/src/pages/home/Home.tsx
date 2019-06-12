@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { connect, Dispatch, SubscriptionAPI } from 'dva';
-import { Layout } from 'antd';
 import styled from 'styled-components';
 import { HomeStore } from './Home.model';
 
-const LayoutUI = styled(Layout)`
+const Layout = styled.div`
   .header {
     text-align: center;
     color: #fff;
@@ -27,12 +26,12 @@ export default class Home extends React.PureComponent<HomeProps, HomeState> {
 
   render() {
     return (
-      <LayoutUI>
-        <Layout.Header className="header">
-          Welcome to joys-react-scripts ❤
-        </Layout.Header>
-        <Layout>
-          <Layout.Content>
+      <Layout>
+        <div className="header">
+          Welcome to joys-react-h5-scripts 💚
+        </div>
+        <div>
+          <div className="content">
             <div>
               <h1>CSS 书写顺序</h1>
               <p>
@@ -56,9 +55,9 @@ export default class Home extends React.PureComponent<HomeProps, HomeState> {
                 [I] Improved #186: 改进/提升<br/>
               </p>
             </div>
-          </Layout.Content>
-        </Layout>
-      </LayoutUI>
+          </div>
+        </div>
+      </Layout>
     );
   }
 }

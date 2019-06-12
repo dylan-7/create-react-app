@@ -1,4 +1,4 @@
-# joys-react-scripts
+# joys-react-h5-scripts
 
 This package includes scripts and configuration used by Create React App.
 Please refer to its documentation:
@@ -7,7 +7,7 @@ Please refer to its documentation:
 * [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
 
 ```
-  create-react-app my-app --scripts-version=joys-react-scripts
+  create-react-app my-app --scripts-version=joys-react-h5-scripts
 ```
 
 Then `cd my-app`, `yarn eject`, `yarn start` can start APP normally.
@@ -43,6 +43,6 @@ After you create the app, you need to execute `yarn eject` and start the app
 
 ## Changelog
 
-V1.2.41
+V0.1.2
 
-* Upgrade to the latest dependencies
+* update readme

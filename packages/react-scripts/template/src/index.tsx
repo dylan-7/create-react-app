@@ -4,8 +4,11 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
+import initReactFastclick from 'react-fastclick';
 import Home from './pages/home/Home';
 import './assets/styles/app.scss';
+
+initReactFastclick();
 
 const app = dva({
   history: createBrowserHistory()
