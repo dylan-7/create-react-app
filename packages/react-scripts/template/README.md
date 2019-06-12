@@ -1,4 +1,4 @@
-# joys-react-scripts
+# joys-react-h5-scripts
 
 ```
  create-react-app --scripts-version=joys-react-h5-scripts my-app
