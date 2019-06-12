@@ -5,12 +5,12 @@ import { HomeStore } from './Home.model';
 
 const Layout = styled.div`
   .header {
-    text-align: center;
-    color: #fff;
+    font-size: 40px;
+    line-height: 80px;
+    padding: 40px;
   }
-  .ant-layout-content {
-    min-width: 600px;
-    margin: 0 auto;
+  .content {
+    padding: 40px;
   }
 `;
 
@@ -28,7 +28,7 @@ export default class Home extends React.PureComponent<HomeProps, HomeState> {
     return (
       <Layout>
         <div className="header">
-          Welcome to joys-react-h5-scripts 💚
+          Welcome to joys-react-h5-scripts
         </div>
         <div>
           <div className="content">
