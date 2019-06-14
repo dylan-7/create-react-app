@@ -557,6 +557,8 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 2,
+                  modules: true, // 开启支持 SASS Modules (foo.scss/foo.scss.d.ts)
+                  localIdentName: '[name]__[local]--[hash:5]',
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
                 'sass-loader'
