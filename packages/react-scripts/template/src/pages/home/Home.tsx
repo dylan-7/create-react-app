@@ -7,10 +7,10 @@ import { HomeStore } from './Home.model';
 const LayoutUI = styled(Layout)`
   .header {
     text-align: center;
-    color: #fff;
+    margin-bottom: 10px;
   }
   .ant-layout-content {
-    min-width: 600px;
+    width: 400px;
     margin: 0 auto;
   }
 `;
