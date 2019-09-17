@@ -1,6 +1,6 @@
 {
   "name": "joys-react-scripts",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -110,7 +110,6 @@
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-import": "^12.0.1",
     "postcss-loader": "3.0.0",
-    "postcss-normalize": "8.0.0",
     "postcss-preset-env": "6.6.0",
     "postcss-safe-parser": "4.0.1",
     "postcss-selector-matches": "^4.0.0",
